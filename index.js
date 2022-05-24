@@ -243,11 +243,12 @@ BlaubergVento.prototype = {
 
     setFanState: function(targetService, fanState, callback, context) { 
         var that = this;
-
+        
+        //1 = heat recovery, 0 = ventilation (air supply or air extract)
         if(1 == fanState){
             var comand = '01';
         }else if(0 == fanState){
-            var comand = '02';
+            var comand = '00';
         }
 
         var payload = '6D6F62696C65'+'06'+comand+'0D0A';
