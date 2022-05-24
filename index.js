@@ -113,7 +113,11 @@ BlaubergVento.prototype = {
         var that = this;
 
         if(that.statusCache && that.statusCache.length){
-            callback(null, Math.round(that.statusCache[21]/255*100));
+            if (that.statusCache[19] == 4) {
+                callback(null, Math.round(that.statusCache[21]/255*100));
+            } else {
+                callback(null, Math.round(that.statusCache[19]*20));
+            }
         }else{
             callback(true);
         }
@@ -122,7 +126,7 @@ BlaubergVento.prototype = {
 
     setCustomSpeed: function(targetService, speed, callback, context) {      
         var that = this;
-        var payload = '6D6F62696C65'+'05'+(Math.round(255/100*speed).toString(16))+'0D0A'
+        var payload = '6D6F62696C65'+'04'+'0'+(Math.ceil(3/100*speed).toString(16))+'0D0A'
 
         this.udpRequest(this.host, this.port, payload, function(error) {
             if (error) {
@@ -133,7 +137,7 @@ BlaubergVento.prototype = {
             } else {
                 this.log.info('set speed ' + speed);
                 if(that.statusCache && that.statusCache.length){
-                    that.statusCache[21] = Math.round(255/100*speed);
+                    that.statusCache[19] = Math.round(3/100*speed);
                 }
             }
             callback();

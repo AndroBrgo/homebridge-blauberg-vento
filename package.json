@@ -7,7 +7,7 @@
   "homepage": "",
   "repository": {
     "type": "git",
-    "url": "git+https://kuzenkos@bitbucket.org/kuzenkos/homebridge-blauberg-vento.git"
+    "url": "git+https://github.com/AndroBrgo/homebridge-blauberg-vento.git"
   },
   "keywords": [
     "homebridge-plugin",
